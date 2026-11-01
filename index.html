@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PRIME TRADERS — trading education, market awareness and learning resources.">
+  <title>PRIME TRADERS | Learn. Analyze. Grow.</title>
+  <style>
+    :root {
+      --gold: #e7b83f; --green: #19b66b; --red: #e33b45;
+      --bg: #080b0c; --panel: #111719; --muted: #aab4b6; --white: #f7f8f8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif; color: var(--white);
+      background: radial-gradient(ellipse at 75% 8%, #183b2d 0, transparent 28%),
+                  radial-gradient(ellipse at 8% 35%, #351b20 0, transparent 25%), var(--bg);
+      line-height: 1.6; overflow-x: hidden;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; pointer-events: none; opacity: .14;
+      background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 48px 48px; mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(1120px, 92%); margin: auto; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(5,8,8,.88); backdrop-filter: blur(14px); border-bottom: 1px solid #26302d; }
+    nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 900; letter-spacing: 2px; }
+    .brand img { width: 54px; height: 54px; object-fit: cover; border-radius: 50%; border: 1px solid var(--gold); }
+    .brand span { color: var(--gold); }
+    .navlinks { display: flex; flex-wrap: wrap; gap: 22px; color: #d7dfdc; font-size: 14px; }
+    .navlinks a:hover { color: var(--gold); }
+    .hero { min-height: 650px; display: grid; grid-template-columns: 1.1fr .9fr; align-items: center; gap: 40px; padding: 75px 0; }
+    .eyebrow { color: var(--green); font-size: 13px; font-weight: 800; letter-spacing: 4px; text-transform: uppercase; }
+    h1 { font-size: clamp(42px, 7vw, 78px); line-height: 1.02; margin: 18px 0; letter-spacing: -3px; }
+    h1 span { color: var(--gold); }
+    .hero p { max-width: 570px; color: var(--muted); font-size: 17px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+    .btn { padding: 13px 22px; border-radius: 8px; font-weight: 800; border: 1px solid var(--gold); display: inline-block; }
+    .btn.primary { background: var(--gold); color: #101010; }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+    .hero-art { position: relative; display: grid; place-items: center; min-height: 400px; }
+    .hero-art::before, .hero-art::after { content: ""; position: absolute; border: 1px solid #d8ad3d55; border-radius: 50%; width: 330px; height: 330px; }
+    .hero-art::after { width: 420px; height: 420px; border-color: #19b66b35; }
+    .hero-art img { width: min(310px, 75%); aspect-ratio: 1; object-fit: cover; border-radius: 26px; z-index: 1; box-shadow: 0 20px 80px #000; border: 2px solid #e7b83f88; }
+    section { padding: 82px 0; }
+    .section-head { text-align: center; margin: 0 auto 42px; max-width: 680px; }
+    .section-head h2 { font-size: clamp(30px, 4vw, 44px); margin: 8px 0; }
+    .section-head p { color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: linear-gradient(145deg, #151e1c, #0d1112); border: 1px solid #2b3933; border-radius: 16px; padding: 25px; }
+    .card .symbol { font-size: 28px; color: var(--gold); }
+    .card h3 { margin: 12px 0 7px; }
+    .card p { color: var(--muted); font-size: 14px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px; align-items: center; }
+    .about-panel { background: linear-gradient(135deg, #17231d, #101415); border: 1px solid #334438; border-radius: 18px; padding: 30px; }
+    .about-panel p { color: var(--muted); margin-top: 12px; }
+    .team { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; max-width: 800px; margin: auto; }
+    .person { overflow: hidden; border-radius: 18px; background: var(--panel); border: 1px solid #344039; }
+    .person img { display: block; width: 100%; height: 390px; object-fit: cover; object-position: center 28%; }
+    .person-info { padding: 20px; }
+    .person-info h3 { font-size: 22px; }
+    .role { color: var(--gold); font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; }
+    .person-info p { color: var(--muted); font-size: 14px; margin-top: 7px; }
+    .contact-box { max-width: 760px; margin: auto; text-align: center; padding: 35px; border: 1px solid #3d493e; border-radius: 18px; background: linear-gradient(140deg, #14231b, #111416); }
+    .numbers { display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 22px; }
+    .number { padding: 12px 18px; border: 1px solid #526047; border-radius: 9px; color: var(--gold); font-weight: 800; }
+    footer { padding: 25px 0; border-top: 1px solid #26302d; color: #8e9995; font-size: 13px; text-align: center; }
+    .notice { margin-top: 18px; font-size: 12px; color: #9da8a3; }
+    @media (max-width: 760px) {
+      nav { padding: 12px 0; align-items: flex-start; flex-direction: column; }
+      .navlinks { gap: 12px; font-size: 12px; }
+      .hero { grid-template-columns: 1fr; text-align: center; padding: 60px 0; }
+      .hero p { margin: auto; }
+      .actions { justify-content: center; }
+      .hero-art { min-height: 340px; }
+      .hero-art::before { width: 260px; height: 260px; }
+      .hero-art::after { width: 320px; height: 320px; }
+      .cards { grid-template-columns: 1fr; }
+      .about-grid, .team { grid-template-columns: 1fr; }
+      .person img { height: 420px; }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav class="wrap">
+    <a class="brand" href="#home"><img src="images/prime-logo.jpg" alt="Prime Traders logo"><div>PRIME <span>TRADERS</span></div></a>
+    <div class="navlinks">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#education">Education</a>
+      <a href="#team">Our Team</a><a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="wrap hero" id="home">
+    <div>
+      <div class="eyebrow">Learn • Analyze • Grow</div>
+      <h1>Think Smart.<br><span>Trade Knowledge.</span></h1>
+      <p>Welcome to PRIME TRADERS — a learning community focused on market education, analysis basics, discipline and responsible financial awareness.</p>
+      <div class="actions">
+        <a class="btn primary" href="#education">Explore Learning</a>
+        <a class="btn" href="#about">Discover Us</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="images/prime-logo.jpg" alt="PRIME TRADERS emblem"></div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="eyebrow">Who we are</div>
+        <h2 style="font-size:40px;margin:10px 0">Built on learning and discipline.</h2>
+        <p style="color:var(--muted)">PRIME TRADERS is a student-led learning initiative. Our goal is to make trading concepts easier to understand and encourage research, patience and responsible decisions.</p>
+      </div>
+      <div class="about-panel">
+        <h3 style="color:var(--gold)">Our mission</h3>
+        <p>To share beginner-friendly educational content about financial markets, chart concepts, risk awareness and the importance of continuous learning.</p>
+        <p>We believe knowledge comes before decisions. No shortcuts, no guaranteed-profit claims — just learning and practice.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Learn with PRIME</div>
+        <h2>Explore the basics</h2>
+        <p>Build your understanding one topic at a time.</p>
+      </div>
+      <div class="cards">
+        <article class="card"><div class="symbol">↗</div><h3>Market Basics</h3><p>Learn what financial markets are, how prices move and the meaning of common market terms.</p></article>
+        <article class="card"><div class="symbol">▥</div><h3>Chart Education</h3><p>Understand candles, trends, support and resistance as educational chart-reading concepts.</p></article>
+        <article class="card"><div class="symbol">◇</div><h3>Risk Awareness</h3><p>Learn why uncertainty, risk management, patience and avoiding impulsive decisions matter.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">The people behind the project</div>
+        <h2>Meet Our Team</h2>
+        <p>Two founders. One vision. Learning and growing together.</p>
+      </div>
+      <div class="team">
+        <article class="person">
+          <img src="images/raju-sahani.jpg" alt="Raju Sahani wearing a black T-shirt">
+          <div class="person-info"><div class="role">Co-Founder</div><h3>Raju Sahani</h3><p>Building PRIME TRADERS with a focus on learning, creativity and teamwork.</p></div>
+        </article>
+        <article class="person">
+          <img src="images/golu-patel.jpg" alt="Golu Patel">
+          <div class="person-info"><div class="role">Co-Founder</div><h3>Golu Patel</h3><p>Part of the PRIME TRADERS team, supporting the community and its learning goals.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Get in touch</div><h2>Contact PRIME TRADERS</h2>
+        <p>For general questions about our learning project.</p>
+      </div>
+      <div class="contact-box">
+        <h3>Connect with our team</h3>
+        <div class="numbers">
+          <a class="number" href="tel:9707546929">9707546929</a>
+          <a class="number" href="tel:9767952340">9767952340</a>
+        </div>
+        <p class="notice">Please contact us respectfully. Do not share private financial or account information.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">© 2026 PRIME TRADERS. Built for learning and awareness.</div>
+  <div class="wrap notice">Educational content only — not financial advice. Trading involves risk; no profits are guaranteed.</div>
+</footer>
+</body>
+</html>
